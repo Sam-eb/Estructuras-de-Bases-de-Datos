@@ -1,0 +1,139 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36" version="29.6.1">
+  <diagram name="Página-1" id="Wc6tnhvxbKCMgJMlep1k">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="dWDVL_FP76R2REclKFvR-10" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Patient" vertex="1">
+          <mxGeometry height="120" width="190" x="273" y="770" as="geometry" />
+        </mxCell>
+        <mxCell id="dWDVL_FP76R2REclKFvR-11" parent="dWDVL_FP76R2REclKFvR-10" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="# ID&lt;div&gt;° Cedula&lt;br&gt;&lt;div&gt;* Name&lt;/div&gt;&lt;div&gt;* Room&amp;nbsp;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;° Diagnose&lt;/div&gt;" vertex="1">
+          <mxGeometry height="94" width="190" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="dWDVL_FP76R2REclKFvR-14" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Employed" vertex="1">
+          <mxGeometry height="130" width="190" x="550" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="dWDVL_FP76R2REclKFvR-15" parent="dWDVL_FP76R2REclKFvR-14" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="# ID&lt;div&gt;* Name&lt;/div&gt;&lt;div&gt;* Direction&lt;/div&gt;&lt;div&gt;* Phone&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;* Room&lt;/span&gt;&lt;/div&gt;&lt;div&gt;° Birth_Date&lt;/div&gt;" vertex="1">
+          <mxGeometry height="104" width="190" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="dWDVL_FP76R2REclKFvR-16" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Room" vertex="1">
+          <mxGeometry height="120" width="190" x="273" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="dWDVL_FP76R2REclKFvR-17" parent="dWDVL_FP76R2REclKFvR-16" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="* List_Patients&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;* List_Empleoyees&lt;/span&gt;&lt;/div&gt;&lt;div&gt;# Name:&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;* Num_Beds&lt;/span&gt;&lt;/div&gt;&lt;div&gt;* List_Bed&amp;nbsp;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="94" width="190" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="dWDVL_FP76R2REclKFvR-22" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;endFill=0;endSize=27;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="dWDVL_FP76R2REclKFvR-10">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="368" y="402" />
+            </Array>
+            <mxPoint x="368" y="400" as="sourcePoint" />
+            <mxPoint x="150" y="720" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0phVcsMXciXSHqUksrYl-23" connectable="0" parent="dWDVL_FP76R2REclKFvR-22" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Un paciente está en una&amp;nbsp;&lt;div&gt;habitación&lt;/div&gt;" vertex="1">
+          <mxGeometry relative="1" x="0.5623" y="-1" as="geometry">
+            <mxPoint x="-1" y="-11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0phVcsMXciXSHqUksrYl-24" connectable="0" parent="dWDVL_FP76R2REclKFvR-22" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Una habitación aloja&amp;nbsp;&lt;div&gt;muchos pacientes&lt;/div&gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.2727" y="-1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dWDVL_FP76R2REclKFvR-25" edge="1" parent="1" source="dWDVL_FP76R2REclKFvR-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.505;entryY=1.01;entryDx=0;entryDy=0;endArrow=ERmany;endFill=0;endSize=27;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryPerimeter=0;" target="dWDVL_FP76R2REclKFvR-15">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="305" y="398" as="sourcePoint" />
+            <mxPoint x="210" y="190" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0phVcsMXciXSHqUksrYl-21" connectable="0" parent="dWDVL_FP76R2REclKFvR-25" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="En una habitación se asignan&lt;div&gt;muchos empelados&lt;/div&gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.741" y="3" as="geometry">
+            <mxPoint x="74" y="3" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0phVcsMXciXSHqUksrYl-22" connectable="0" parent="dWDVL_FP76R2REclKFvR-25" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Un empleado se asigna a una habitación" vertex="1">
+          <mxGeometry relative="1" x="0.584" y="-3" as="geometry">
+            <mxPoint y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0phVcsMXciXSHqUksrYl-9" edge="1" parent="1" source="0phVcsMXciXSHqUksrYl-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;exitX=0.483;exitY=1.039;exitDx=0;exitDy=0;exitPerimeter=0;startArrow=classic;startFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="102" y="840" />
+              <mxPoint x="120" y="840" />
+              <mxPoint x="120" y="836" />
+            </Array>
+            <mxPoint x="150" y="836" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0phVcsMXciXSHqUksrYl-19" connectable="0" parent="0phVcsMXciXSHqUksrYl-9" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Un paciente DEBE estar&lt;div&gt;en una cama&lt;/div&gt;" vertex="1">
+          <mxGeometry relative="1" x="0.7498" y="1" as="geometry">
+            <mxPoint x="-9" y="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0phVcsMXciXSHqUksrYl-20" connectable="0" parent="0phVcsMXciXSHqUksrYl-9" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Una cama PUEDE&amp;nbsp;&lt;div&gt;tener un paciente&lt;/div&gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.6793" y="-2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0phVcsMXciXSHqUksrYl-3" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Bed" vertex="1">
+          <mxGeometry height="100" width="190" x="10" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="0phVcsMXciXSHqUksrYl-5" parent="0phVcsMXciXSHqUksrYl-3" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="* ID&lt;div&gt;° Pacient&lt;/div&gt;&lt;div&gt;° Diagnose&lt;/div&gt;&lt;div&gt;° Employed&lt;/div&gt;" vertex="1">
+          <mxGeometry height="74" width="190" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="0phVcsMXciXSHqUksrYl-1" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;endFill=0;endSize=25;" target="0phVcsMXciXSHqUksrYl-3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="270" y="350" />
+              <mxPoint x="100" y="350" />
+            </Array>
+            <mxPoint x="270" y="353" as="sourcePoint" />
+            <mxPoint x="100" y="380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0phVcsMXciXSHqUksrYl-6" connectable="0" parent="0phVcsMXciXSHqUksrYl-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry relative="1" x="0.7841" y="-1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0phVcsMXciXSHqUksrYl-16" connectable="0" parent="0phVcsMXciXSHqUksrYl-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Una habitación tiene muchas camas" vertex="1">
+          <mxGeometry relative="1" x="-0.7816" as="geometry">
+            <mxPoint x="-75" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0phVcsMXciXSHqUksrYl-17" connectable="0" parent="0phVcsMXciXSHqUksrYl-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Una cama está en una habitación" vertex="1">
+          <mxGeometry relative="1" x="0.0577" as="geometry">
+            <mxPoint x="-29" y="40" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0phVcsMXciXSHqUksrYl-28" edge="1" parent="1" source="0phVcsMXciXSHqUksrYl-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=ERmany;endFill=0;strokeWidth=1;endSize=20;" target="dWDVL_FP76R2REclKFvR-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="0phVcsMXciXSHqUksrYl-29" connectable="0" parent="0phVcsMXciXSHqUksrYl-28" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Tiene" vertex="1">
+          <mxGeometry relative="1" x="-0.3834" y="-2" as="geometry">
+            <mxPoint x="2" y="-25" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0phVcsMXciXSHqUksrYl-30" connectable="0" parent="0phVcsMXciXSHqUksrYl-28" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Está en un" vertex="1">
+          <mxGeometry relative="1" x="0.4922" y="-3" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0phVcsMXciXSHqUksrYl-25" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Hospital" vertex="1">
+          <mxGeometry height="120" width="190" x="273" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="0phVcsMXciXSHqUksrYl-26" parent="0phVcsMXciXSHqUksrYl-25" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="* List_Patients&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;* List_Empleoyees&lt;/span&gt;&lt;/div&gt;&lt;div&gt;# Name&lt;/div&gt;&lt;div&gt;* List_Rooms&lt;/div&gt;" vertex="1">
+          <mxGeometry height="94" width="190" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="0phVcsMXciXSHqUksrYl-31" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;endFill=1;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="160" y="840" as="sourcePoint" />
+            <mxPoint x="273" y="840" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
