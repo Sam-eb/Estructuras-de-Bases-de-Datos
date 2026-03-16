@@ -81,25 +81,9 @@ class ABB:
             return ABB.buscar(nodo.izquierda, id)
         return ABB.buscar(nodo.derecha, id)
     
-    def buscar_rango(nodo,rango):
-        resultado = []
-        resultado.append(ABB._buscar_rango(nodo,rango, resultado))
-        return resultado
-
-    def _buscar_rango(nodo,rango, resultado):
-        if nodo is None:
-            return None
-        if rango[0] <= nodo.estudiante["id"] <= rango[1]:
-            resultado.append
-        if rango[0] < nodo.estudiante["id"]:
-            return ABB._buscar_rango(nodo.izquierda, rango, resultado)
-        if rango[1] > nodo.estudiante["id"]:
-            return ABB._buscar_rango(nodo.derecha, rango, resultado)
-        return resultado
-
     def buscar_orden(nodo, rango):
         resultado = []
-        resultado.append(ABB._buscar_orden(nodo, rango, resultado))
+        ABB._buscar_orden(nodo, rango, resultado)
         return resultado
     
     def _buscar_orden(nodo, rango, resultado):

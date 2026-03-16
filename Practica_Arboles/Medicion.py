@@ -24,61 +24,69 @@ list = []
 for id in ids:
     list.append(Lista.buscar_en_lista(estudiantes, id))
 fin = time.time()
-print(list[:10])
+print(f"Los 10 primeros son: {list[:10]}")
 print(f"Tiempo de busqueda para {num_pruebas} ids: {fin-inicio:.6f}")
 input("")
 
-
+list =[]
 print("Usando Arboles ABB: ")
 inicio = time.time()
-list =[]
+
 for id in ids:
     list.append(ABB.buscar(raiz,id))
 
 fin = time.time()
-print(list[:10])
+print(f"Los 10 primeros son: {list[:10]}")
 print(f"Tiempo de busqueda para {num_pruebas} ids: {fin-inicio:.6f}")
 input("")
 
+list =[]
 print("Usando Arboles B+: ")
 inicio = time.time()
-list =[]
+
 for id in ids:
     list.append(arbol_Bmas.buscar(id))
 
 fin = time.time()
-print(list[:10])
+print(f"Los 10 primeros son: {list[:10]}")
 print(f"Tiempo de busqueda para {num_pruebas} ids: {fin-inicio:.6f}")
 input("")
 
+list = []
+
 print("Iniciando prueba #2: \n" \
-f"En esta prueba se realizaran consultas por rango, las cuales no deben de llegar en orden, solo cumplir con el rango: ")
-rango = (1000, 20000)
-print("El rango se escoge de manera arbitraria desde 1000 hasta 20000.")
+f"En esta prueba se realizaran consultas por rango, las cuales deben de llegar en orden y cumplir con el rango: ")
+rango = (10000, 20000)
+print(f"El rango se escoge de manera arbitraria desde {rango[0]} hasta {rango[1]}.")
 input("")
 
 print("Usando Listas: ")
 inicio = time.time()
 list = Lista.buscar_rango(rango, estudiantes)
 fin = time. time()
-print(len(list))
+print(f"La longitud de la lista es de: {len(list)}\n")
+print(f"Los 10 primeros son: {list[:10]}")
 print(f"Tiempo de busqueda para {num_pruebas} ids: {fin-inicio:.6f}")
 input("")
 
-
+list = []
 print("Usando Arboles ABB: ")
 inicio = time.time()
 list = ABB.buscar_orden(raiz, rango)
 fin = time.time()
-print(len(list))
+print(f"La longitud de la lista es de: {len(list)}\n")
+print(f"Los 10 primeros son: {list[:10]}")
 print(f"Tiempo de busqueda para {num_pruebas} ids: {fin-inicio:.6f}")
 input("")
 
+list = []
 print("Usando Arboles B+: ")
 inicio = time.time()
 list = arbol_Bmas.buscar_rango(rango[0], rango[1])
 fin = time.time()
-print(len(list))
+print(f"La longitud de la lista es de: {len(list)}\n")
+print(f"Los 10 primeros son: {list[:10]}")
+
 print(f"Tiempo de busqueda para {num_pruebas} ids: {fin-inicio:.6f}")
 input("")
 

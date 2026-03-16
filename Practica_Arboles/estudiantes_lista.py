@@ -50,12 +50,19 @@ class Lista:
                     return estudiante
             return None
     
+    def ordenar_dict(estudiante):
+        return estudiante["id"]
+
+        
     def buscar_rango(rango, estudiantes):
+        estudiantes = sorted(estudiantes, key= Lista.ordenar_dict)
         resultado = []
         for estudiante in estudiantes:
             if rango[0]  <= estudiante["id"] <= rango[1]:
                 resultado.append(estudiante)
 
         return resultado
+    
+    
                 
 
