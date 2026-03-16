@@ -1,0 +1,26 @@
+import random
+
+def generar_estudiantes():
+    nombres = [
+        "Ana", "Carlos", "María", "José", "Laura", "Pedro", "Sofía", "Diego",
+        "Valentina", "Andrés", "Camila", "Juan", "Isabella", "Miguel", "Lucía",
+        "Santiago", "Gabriela", "Daniel", "Mariana", "Sebastián"
+    ]
+
+    ids = random.sample(range(1000, 99999), 10000)
+
+    estudiantes = [
+        {
+            "id": ids[i],
+            "nombre": random.choice(nombres),
+            "promedio": round(random.uniform(0, 10), 1)
+        }
+        for i in range(10000)
+    ]
+
+    return estudiantes
+
+
+estudiantes = generar_estudiantes()
+print(f"Total de estudiantes: {len(estudiantes)}")
+print("Primeros 5:", estudiantes[:5])
