@@ -1,6 +1,6 @@
-import random
+"Codigo Co-Creado con Herramientas de Inteligencia Artificial."
 import json
-import time
+
 
 # ── Nodo del árbol B+ ─────────────────────────────────────
 class NodoHoja:
@@ -43,7 +43,8 @@ class ArbolBMas:
             lo, hi = 0, len(nodo.claves)
             while lo < hi:
                 mid = (lo + hi) // 2
-                if nodo.claves[mid] < id: lo = mid + 1
+                if nodo.claves[mid] < id: 
+                    lo = mid + 1
                 else: hi = mid
 
             if lo < len(nodo.claves) and nodo.claves[lo] == id:
@@ -131,11 +132,11 @@ class ArbolBMas:
             else: hi = mid
 
         if lo < len(nodo.claves) and nodo.claves[lo] == id:
-            if not silencioso:
+            if silencioso:
                 print(f"🔍 Estudiante encontrado: {nodo.datos[lo]}")
             return nodo.datos[lo]
 
-        if not silencioso:
+        if silencioso:
             print(f"❌ No se encontró un estudiante con el ID {id}")
         return None
 
@@ -164,30 +165,32 @@ class ArbolBMas:
             print(f"❌ No se encontró un estudiante con el ID {id}")
 
     # ── Listar (recorre punteros entre hojas) ─────────────
-    def listar(self):
+    def buscar_rango(self, min, max):
         resultado = []
         # Bajar hasta la primera hoja por la izquierda
         nodo = self.raiz
         while isinstance(nodo, NodoInterno):
             nodo = nodo.hijos[0]
-
-        # Seguir punteros siguiente hasta el final
-        while nodo:
-            resultado.extend(nodo.datos)
-            nodo = nodo.siguiente
+        resultado = self._buscar_rango(min, max, resultado, nodo)
         return resultado
+
+    def _buscar_rango(self, min,max, resultado, nodo):
+        while nodo:
+            if min > nodo.claves[len(nodo.claves)-1]:
+                return self._buscar_rango(min, max, resultado, nodo.siguiente)
+            if max < nodo.claves[0]:
+                return resultado
+            for d in nodo.datos:
+                if min <= d["id"] <= max:
+                    resultado.append(d)
+            nodo = nodo.siguiente
+
 
     # ── Agregar ──────────────────────────────────────────
     def agregar(self, id, nombre, promedio):
         self.insertar({"id": id, "nombre": nombre, "promedio": promedio})
         print(f"✅ Estudiante agregado: ID={id}, Nombre={nombre}, Promedio={promedio}")
 
-    # ── Archivo ──────────────────────────────────────────
-    def escribir(self, archivo="estudiantes_bmas.txt"):
-        estudiantes = self.listar()
-        with open(archivo, "w", encoding="utf-8") as f:
-            json.dump(estudiantes, f, ensure_ascii=False, separators=(",", ":"))
-        print(f"✅ {len(estudiantes)} estudiantes guardados en '{archivo}'")
 
     def leer(self, archivo="estudiantes_bmas.txt"):
         with open(archivo, "r", encoding="utf-8") as f:
@@ -197,40 +200,4 @@ class ArbolBMas:
         print(f"✅ {len(estudiantes)} estudiantes cargados en el árbol B+")
 
 
-# ── Generar ───────────────────────────────────────────────
-def generar_estudiantes():
-    nombres = [
-        "Ana", "Carlos", "María", "José", "Laura", "Pedro", "Sofía", "Diego",
-        "Valentina", "Andrés", "Camila", "Juan", "Isabella", "Miguel", "Lucía",
-        "Santiago", "Gabriela", "Daniel", "Mariana", "Sebastián"
-    ]
-    arbol = ArbolBMas(orden=50)
-    ids   = random.sample(range(1000, 99999), 10000)
-    for i in range(10000):
-        arbol.insertar({"id": ids[i], "nombre": random.choice(nombres), "promedio": round(random.uniform(0, 10), 1)})
-    return arbol
 
-# ── 100 búsquedas ─────────────────────────────────────────
-def busquedas_bmas(arbol, ids_buscar):
-    inicio = time.perf_counter()
-    for id in ids_buscar:
-        arbol.buscar(id, silencioso=True)
-    fin = time.perf_counter()
-    print(f"⏱️  B+   — 100 búsquedas en {fin - inicio:.6f} segundos")
-
-
-# ── Uso ───────────────────────────────────────────────────
-arbol      = generar_estudiantes()
-todos      = arbol.listar()
-ids_buscar = random.sample([e["id"] for e in todos], 100)
-
-arbol.agregar(99999, "Nuevo", 8.5)
-arbol.buscar(99999)
-arbol.eliminar(99999)
-
-print(f"\n📋 Primeros 5 estudiantes ordenados por ID:")
-for e in arbol.listar()[:5]:
-    print(f"  ID: {e['id']}  |  Nombre: {e['nombre']}  |  Promedio: {e['promedio']}")
-
-print(f"\n🔎 Realizando 100 búsquedas aleatorias...\n")
-busquedas_bmas(arbol, ids_buscar)
