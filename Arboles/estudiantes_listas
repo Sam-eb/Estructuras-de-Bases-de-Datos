@@ -1,0 +1,107 @@
+import random
+import json
+import time
+
+
+def generar_estudiantes():
+    nombres = [
+        "Ana", "Carlos", "María", "José", "Laura", "Pedro", "Sofía", "Diego",
+        "Valentina", "Andrés", "Camila", "Juan", "Isabella", "Miguel", "Lucía",
+        "Santiago", "Gabriela", "Daniel", "Mariana", "Sebastián"
+    ]
+    ids = random.sample(range(1000, 99999), 10000)
+    return [
+        {"id": ids[i], "nombre": random.choice(nombres), "promedio": round(random.uniform(0, 10), 1)}
+        for i in range(10000)
+    ]
+
+
+def escribir_estudiantes(estudiantes, archivo="estudiantes.txt"):
+    with open(archivo, "w", encoding="utf-8") as f:
+        json.dump(estudiantes, f, ensure_ascii=False, separators=(",", ":"))
+
+
+def leer_estudiantes(archivo="estudiantes.txt"):
+    with open(archivo, "r", encoding="utf-8") as f:
+        estudiantes = json.load(f)
+    print(f" {len(estudiantes)} estudiantes leídos desde '{archivo}'")
+    return estudiantes
+
+
+def agregar_estudiante(estudiantes, id, nombre, promedio):
+    if any(e["id"] == id for e in estudiantes):
+        print(f" Ya existe un estudiante con el ID {id}")
+        return estudiantes
+
+    nuevo = {"id": id, "nombre": nombre, "promedio": promedio}
+    estudiantes.append(nuevo)
+    print(f" Estudiante agregado: {nuevo}")
+    return estudiantes
+
+def eliminar_estudiante(estudiantes, id):
+    for i, estudiante in enumerate(estudiantes):
+        if estudiante["id"] == id:
+            estudiantes.pop(i)
+            print(f" Estudiante con ID {id} eliminado")
+            return estudiantes
+
+    print(f" No se encontró un estudiante con el ID {id}")
+    return estudiantes
+
+def consultar_estudiante(estudiantes, id):
+    resultado = next((e for e in estudiantes if e["id"] == id), None)
+    if resultado:
+        print(f" Estudiante encontrado: {resultado}")
+    else:
+        print(f" No se encontró un estudiante con el ID {id}")
+    return resultado
+
+def listar_estudiantes(estudiantes):
+    ordenados = sorted(estudiantes, key=lambda e: e["id"])
+    return ordenados
+
+
+def buscar_en_lista(estudiantes, id):
+        for estudiante in estudiantes:
+            if estudiante["id"] == id:
+                return estudiante
+        return None
+
+
+def buscar_ids_aleatorios(estudiantes):
+        ids_random = random.sample([e["id"] for e in estudiantes], 100)
+
+        inicio = time.time()
+
+        for id in ids_random:
+            buscar_en_lista(estudiantes, id)
+
+        fin = time.time()
+
+        print(f"✅ 100 búsquedas en lista completadas")
+        print(f"⏱️  Tiempo total:  {fin - inicio:.6f} segundos")
+        print(f"⏱️  Tiempo por búsqueda: {(fin - inicio) / 100:.6f} segundos")
+
+def buscar_ids_ordenados(estudiantes):
+    estudiantes_ordenados = listar_estudiantes(estudiantes)  
+    ids_random = random.sample([e["id"] for e in estudiantes_ordenados], 100)
+
+    inicio = time.time()
+
+    for id in ids_random:
+        buscar_en_lista(estudiantes_ordenados, id)
+
+    fin = time.time()
+
+    print(f"✅ 100 búsquedas en lista ordenada completadas")
+    print(f"⏱️  Tiempo total:        {fin - inicio:.6f} segundos")
+    print(f"⏱️  Tiempo por búsqueda: {(fin - inicio) / 100:.6f} segundos")
+
+generar_estudiantes()
+estudiantes = leer_estudiantes()
+
+print("Tiempo de busqueada estándo los ids de forma aleatoria:")
+buscar_ids_aleatorios(estudiantes)
+
+print("Tiempo de busqueada estándo los ids de forma ordenada:")
+buscar_ids_ordenados(estudiantes)

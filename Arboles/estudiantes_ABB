@@ -1,0 +1,207 @@
+import random
+import json
+import time
+
+# ── Nodo AVL ──────────────────────────────────────────────
+class Nodo:
+    def __init__(self, estudiante):
+        self.estudiante = estudiante
+        self.izquierda = None
+        self.derecha = None
+        self.altura = 1
+
+# ── Utilidades AVL ────────────────────────────────────────
+def _altura(nodo):
+    return nodo.altura if nodo else 0
+
+def _balance(nodo):
+    return _altura(nodo.izquierda) - _altura(nodo.derecha) if nodo else 0
+
+def _actualizar_altura(nodo):
+    nodo.altura = 1 + max(_altura(nodo.izquierda), _altura(nodo.derecha))
+
+# ── Rotaciones ────────────────────────────────────────────
+def _rotar_derecha(y):
+    x = y.izquierda
+    y.izquierda = x.derecha
+    x.derecha = y
+    _actualizar_altura(y)
+    _actualizar_altura(x)
+    return x
+
+def _rotar_izquierda(x):
+    y = x.derecha
+    x.derecha = y.izquierda
+    y.izquierda = x
+    _actualizar_altura(x)
+    _actualizar_altura(y)
+    return y
+
+def _rebalancear(nodo):
+    _actualizar_altura(nodo)
+    b = _balance(nodo)
+
+    # Caso izquierda-izquierda
+    if b > 1 and _balance(nodo.izquierda) >= 0:
+        return _rotar_derecha(nodo)
+    # Caso izquierda-derecha
+    if b > 1 and _balance(nodo.izquierda) < 0:
+        nodo.izquierda = _rotar_izquierda(nodo.izquierda)
+        return _rotar_derecha(nodo)
+    # Caso derecha-derecha
+    if b < -1 and _balance(nodo.derecha) <= 0:
+        return _rotar_izquierda(nodo)
+    # Caso derecha-izquierda
+    if b < -1 and _balance(nodo.derecha) > 0:
+        nodo.derecha = _rotar_derecha(nodo.derecha)
+        return _rotar_izquierda(nodo)
+
+    return nodo
+
+# ── Operaciones AVL ───────────────────────────────────────
+def insertar(nodo, estudiante):
+    if nodo is None:
+        return Nodo(estudiante)
+    if estudiante["id"] < nodo.estudiante["id"]:
+        nodo.izquierda = insertar(nodo.izquierda, estudiante)
+    elif estudiante["id"] > nodo.estudiante["id"]:
+        nodo.derecha = insertar(nodo.derecha, estudiante)
+    else:
+        print(f"❌ Ya existe un estudiante con el ID {estudiante['id']}")
+        return nodo
+    return _rebalancear(nodo)
+
+
+def buscar(nodo, id):
+    if nodo is None:
+        print(f"❌ No se encontró un estudiante con el ID {id}")
+        return None
+    if id == nodo.estudiante["id"]:
+        print(f"🔍 Estudiante encontrado: {nodo.estudiante}")
+        return nodo.estudiante
+    if id < nodo.estudiante["id"]:
+        return buscar(nodo.izquierda, id)
+    return buscar(nodo.derecha, id)
+
+
+def _minimo(nodo):
+    while nodo.izquierda:
+        nodo = nodo.izquierda
+    return nodo
+
+def eliminar(nodo, id):
+    if nodo is None:
+        print(f"❌ No se encontró un estudiante con el ID {id}")
+        return None
+    if id < nodo.estudiante["id"]:
+        nodo.izquierda = eliminar(nodo.izquierda, id)
+    elif id > nodo.estudiante["id"]:
+        nodo.derecha = eliminar(nodo.derecha, id)
+    else:
+        if nodo.izquierda is None:
+            print(f"✅ Estudiante con ID {id} eliminado")
+            return nodo.derecha
+        if nodo.derecha is None:
+            print(f"✅ Estudiante con ID {id} eliminado")
+            return nodo.izquierda
+        sucesor = _minimo(nodo.derecha)
+        nodo.estudiante = sucesor.estudiante
+        nodo.derecha = eliminar(nodo.derecha, sucesor.estudiante["id"])
+        return _rebalancear(nodo)
+    return _rebalancear(nodo)
+
+
+def listar(nodo, resultado=None):
+    if resultado is None:
+        resultado = []
+    if nodo is None:
+        return resultado
+    listar(nodo.izquierda, resultado)
+    resultado.append(nodo.estudiante)
+    listar(nodo.derecha, resultado)
+    return resultado
+
+
+# ── Archivo ───────────────────────────────────────────────
+def escribir_arbol(raiz, archivo="estudiantes_avl.txt"):
+    estudiantes = listar(raiz)
+    with open(archivo, "w", encoding="utf-8") as f:
+        json.dump(estudiantes, f, ensure_ascii=False, separators=(",", ":"))
+    print(f"✅ {len(estudiantes)} estudiantes guardados en '{archivo}'")
+
+def leer_arbol(archivo="estudiantes_avl.txt"):
+    with open(archivo, "r", encoding="utf-8") as f:
+        estudiantes = json.load(f)
+    raiz = None
+    for e in estudiantes:
+        raiz = insertar(raiz, e)
+    print(f"✅ {len(estudiantes)} estudiantes cargados en el árbol")
+    return raiz
+
+
+# ── Generar ───────────────────────────────────────────────
+def generar_estudiantes_aleatorios():
+    nombres = [
+        "Ana", "Carlos", "María", "José", "Laura", "Pedro", "Sofía", "Diego",
+        "Valentina", "Andrés", "Camila", "Juan", "Isabella", "Miguel", "Lucía",
+        "Santiago", "Gabriela", "Daniel", "Mariana", "Sebastián"
+    ]
+    ids = random.sample(range(1000, 99999), 10000)
+    raiz = None
+    for i in range(10000):
+        estudiante = {"id": ids[i], "nombre": random.choice(nombres), "promedio": round(random.uniform(0, 10), 1)}
+        raiz = insertar(raiz, estudiante)
+    return raiz
+
+def generar_estudiantes_ordenados():
+    nombres = [
+        "Ana", "Carlos", "María", "José", "Laura", "Pedro", "Sofía", "Diego",
+        "Valentina", "Andrés", "Camila", "Juan", "Isabella", "Miguel", "Lucía",
+        "Santiago", "Gabriela", "Daniel", "Mariana", "Sebastián"
+    ]
+    ids = range(1, 10001)
+    raiz = None
+    for i in range(10000):
+        estudiante = {"id": ids[i], "nombre": random.choice(nombres), "promedio": round(random.uniform(0, 10), 1)}
+        raiz = insertar(raiz, estudiante)
+    return raiz
+
+# ── Uso ───────────────────────────────────────────────────
+
+
+
+
+# ── Buscar sin imprimir ───────────────────────────────────
+def buscar_silencioso(nodo, id):
+    if nodo is None:
+        return None
+    if id == nodo.estudiante["id"]:
+        return nodo.estudiante
+    if id < nodo.estudiante["id"]:
+        return buscar_silencioso(nodo.izquierda, id)
+    return buscar_silencioso(nodo.derecha, id)
+
+
+# ── 100 búsquedas en ABB ──────────────────────────────────
+def busquedas_abb(raiz, ids_buscar):
+    inicio = time.time()
+    for id in ids_buscar:
+        buscar_silencioso(raiz, id)
+    fin = time.time()
+    print(f"⏱️  ABB  — 100 búsquedas en {fin - inicio:.6f} segundos")
+
+
+# ── Uso ───────────────────────────────────────────────────
+raiz = generar_estudiantes_aleatorios()
+todos = listar(raiz)
+ids_buscar = random.sample([e["id"] for e in todos], 100)
+print("Caso 1, estudiantes en orden aleatorio.")
+print(f"🔎 Buscando {len(ids_buscar)} estudiantes aleatorios...\n")
+busquedas_abb(raiz, ids_buscar)
+
+raiz = generar_estudiantes_ordenados()
+todos = listar(raiz)
+ids_buscar = random.sample([e["id"] for e in todos], 100)
+print("Caso 2, estudiantes en orden.")
+print(f"🔎 Buscando {len(ids_buscar)} estudiantes aleatorios...\n")
+busquedas_abb(raiz, ids_buscar)
