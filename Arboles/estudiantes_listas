@@ -97,7 +97,7 @@ def buscar_ids_ordenados(estudiantes):
     print(f"⏱️  Tiempo total:        {fin - inicio:.6f} segundos")
     print(f"⏱️  Tiempo por búsqueda: {(fin - inicio) / 100:.6f} segundos")
 
-generar_estudiantes()
+escribir_estudiantes(generar_estudiantes())
 estudiantes = leer_estudiantes()
 
 print("Tiempo de busqueada estándo los ids de forma aleatoria:")

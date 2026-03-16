@@ -153,18 +153,6 @@ def generar_estudiantes_aleatorios():
         raiz = insertar(raiz, estudiante)
     return raiz
 
-def generar_estudiantes_ordenados():
-    nombres = [
-        "Ana", "Carlos", "María", "José", "Laura", "Pedro", "Sofía", "Diego",
-        "Valentina", "Andrés", "Camila", "Juan", "Isabella", "Miguel", "Lucía",
-        "Santiago", "Gabriela", "Daniel", "Mariana", "Sebastián"
-    ]
-    ids = range(1, 10001)
-    raiz = None
-    for i in range(10000):
-        estudiante = {"id": ids[i], "nombre": random.choice(nombres), "promedio": round(random.uniform(0, 10), 1)}
-        raiz = insertar(raiz, estudiante)
-    return raiz
 
 # ── Uso ───────────────────────────────────────────────────
 
@@ -199,7 +187,7 @@ print("Caso 1, estudiantes en orden aleatorio.")
 print(f"🔎 Buscando {len(ids_buscar)} estudiantes aleatorios...\n")
 busquedas_abb(raiz, ids_buscar)
 
-raiz = generar_estudiantes_ordenados()
+
 todos = listar(raiz)
 ids_buscar = random.sample([e["id"] for e in todos], 100)
 print("Caso 2, estudiantes en orden.")
