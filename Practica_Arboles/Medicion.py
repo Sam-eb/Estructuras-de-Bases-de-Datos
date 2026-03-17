@@ -5,7 +5,7 @@ from estudiantes_ABB_ import ABB
 from estudiantes_Bmas import ArbolBMas
 from estudiantes_lista import Lista
 
-num_pruebas = 100
+num_pruebas = 4000
 estudiantes = Helper.generar_estudiantes.generar_estudiantes()
 Helper.generar_estudiantes.escribir(estudiantes)
 arbol_Bmas = ArbolBMas(50)
