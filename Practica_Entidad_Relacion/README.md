@@ -1,8 +1,5 @@
-Repositorio recopilatorio de trabajos de la asignatura estructura de datos.
+En esta carpeta esta la práctica para el tema de entidad-relación.
 
-Hasta la fecha se presentan los documentos de:
-
-- Practica Entidad - Relación.
-- Practica Arboles.
-- Participación Merklee Tree.
-- Participación Matriz escrita al disco.
+El enunciado nos hablaba de un caso hipotetico donde en un sistema (seguramente en un hospital) existen pacientes, empleados y salas, el 
+mismo enunciado nos da los atributos que son importantes de estas entidades. Tambien nos dicen que la sala tiene muchos pacientes y
+empleados pero los pacientes y empleados solo tienen una sala.
