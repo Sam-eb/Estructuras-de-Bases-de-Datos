@@ -1,8 +1,3 @@
-Repositorio recopilatorio de trabajos de la asignatura estructura de datos.
-
-Hasta la fecha se presentan los documentos de:
-
-- Practica Entidad - Relación.
-- Practica Arboles.
-- Participación Merklee Tree.
-- Participación Matriz escrita al disco.
+En esta carpeta se encuentra el codigo para generar un Arbol de Merklee con el cual se arma "de abajo hacia arriba" utilizando los 
+hashes de los archivos que se encuentran en sus hojas, el proceso concatena los hashes de hojas "hermanas" y luego realiza la misma 
+operación hash (en este caso SHA 256) e itera hasta llegar a la raiz.
