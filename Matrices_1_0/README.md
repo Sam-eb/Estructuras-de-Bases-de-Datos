@@ -1,8 +1,1 @@
-Repositorio recopilatorio de trabajos de la asignatura estructura de datos.
-
-Hasta la fecha se presentan los documentos de:
-
-- Practica Entidad - Relación.
-- Practica Arboles.
-- Participación Merklee Tree.
-- Participación Matriz escrita al disco.
+En esta carpeta se encuentran 2 archivos, uno que se encarga de escribir 100000000000, unos y ceros en un archivo de texto y otro que es un intento de lectura de esa matriz. 
