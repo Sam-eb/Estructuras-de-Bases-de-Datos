@@ -25,4 +25,3 @@ if orden == None :
     print("Con las transacciones ingresadas es imposible generar esa root.")
 else:
     print("El orden en el que deben ir las transacciones para generar esa root es: ", orden, "(presione enter para continuar.)")
-#4b0694ae17b88fc84a5c2eb76c2110a3434d97510619c4c6cacf975550542e4f
