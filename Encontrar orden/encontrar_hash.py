@@ -11,3 +11,6 @@ def encontrar_hash(hash_o):
 
     return cadena
 
+
+hash = input("Ingrese su hash: ")
+print ( "su cadena de números es:", encontrar_hash(hash))
