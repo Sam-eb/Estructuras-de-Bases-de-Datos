@@ -41,7 +41,3 @@ class Merkle_Tree():
 
 
 
-transacciones = ("Hola","HOLA", "PERRO", "perro", "casa", "CASA")
-m = Merkle_Tree(transacciones)
-m.calcular_merkle_root()
-print(m.root)
