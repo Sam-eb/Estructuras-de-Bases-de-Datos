@@ -7,7 +7,7 @@ def encontrar_orden(transacciones, user_root):
         k = Merkle_Tree(tras)
         k.calcular_merkle_root() 
         
-        if (k.root == user_root):
+        if (k.root[0] == user_root):
             return tras
 
 
