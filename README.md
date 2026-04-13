@@ -6,3 +6,5 @@ Hasta la fecha se presentan los documentos de:
 - Practica Arboles.
 - Participación Merklee Tree.
 - Participación Matriz escrita al disco.
+- Encontrar hash
+- Encontrar orden
