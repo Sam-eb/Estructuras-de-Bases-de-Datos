@@ -4,7 +4,7 @@ from Arbol_KD import Arbol_KD, Nodo
 """
 A continuación se desarrollan las funciones necesarias para graficar el resultado obtenido por el arbol
 """
-def graficar_vecino(datos,punto_busqueda, punto_resultado, min, max):
+def graficar_vecino(datos,punto_busqueda, punto_resultado, raiz, min, max):
     """
     datos= Los datos utilizados en la prueba, debe de ser un iterable.
     punto_busqueda = El punto objetivo de la busqueda, con este podemos verificar si el punto más cercano efectivamente 
@@ -22,9 +22,10 @@ def graficar_vecino(datos,punto_busqueda, punto_resultado, min, max):
     plt.scatter(xs, ys, c='steelblue', alpha=0.5, s=20)
     plt.scatter(*punto_busqueda, c='red', s=20, zorder=5)
     plt.scatter(*punto_resultado, c='green', s=20, zorder=5)
+    plt.scatter(*raiz, c='blue', s=20, zorder=5)
     plt.show()
 
-def graficar_radio(datos, punto_centro, radio, puntos_encontrados, min, max):
+def graficar_radio(datos, punto_centro, radio, raiz, puntos_encontrados, min, max):
     """
     datos= Los datos utilizados en la prueba, debe de ser un iterable.
     punto_centro = El centro del radio de busqueda, lo marcamos de otro color para denotarlo con calridad.
@@ -50,6 +51,7 @@ def graficar_radio(datos, punto_centro, radio, puntos_encontrados, min, max):
         plt.scatter(ex, ey, c='green', s=20, zorder=5)
     
     plt.scatter(*punto_centro, c='red', s=20, zorder=5)
+    plt.scatter(*raiz, c='blue', s=20, zorder=5)
     plt.show()
 
 def generar_datos(min, max, cantidad):
@@ -85,7 +87,7 @@ def fuerza_bruta_radio(radio, centro,datos):
             encontrados.append(dato)
     return encontrados
 
-"""#En este apartado se deja una pequeña prueba realizada.
+#En este apartado se deja una pequeña prueba realizada.
 min = -100
 max = 100
 cantidad = 100
@@ -98,11 +100,10 @@ objetivo[1] = objetivo[1] + 40
 objetivo[0] = objetivo[0] + 40
 #Se selecciona un dato cualquiera y se le realiza un pequeño cambio.
 
-graficar_vecino( datos, objetivo,arbol.buscar_vecino(objetivo),min, max)
+graficar_vecino( datos, objetivo,arbol.buscar_vecino(objetivo), arbol.raiz.bordes,min, max)
 centro = datos[0]
 radio = (100)
-graficar_radio(datos,centro,radio,arbol.encontrar_radio(centro,radio), min, max)
+graficar_radio(datos,centro,radio, arbol.raiz.bordes,arbol.encontrar_radio(centro,radio), min, max)
 
 #En esta pruebas los datos son arbitrarios y sin intención especifica.
 
-"""
