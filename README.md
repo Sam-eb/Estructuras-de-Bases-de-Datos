@@ -8,3 +8,4 @@ Hasta la fecha se presentan los documentos de:
 - Participación Matriz escrita al disco.
 - Encontrar hash
 - Encontrar orden
+- Arbol_KD
