@@ -1,8 +1,55 @@
 import time
-
 import random
-from Arbol_KD import Arbol_KD
+from Quadtree import Quadtree
 from Test import fuerza_bruta_radio, fuerza_bruta_vecino, generar_datos
+import matplotlib.pyplot as plt
+import numpy as np
+ 
+def graficar_comparacion_vecino(datos_alg1, datos_alg2, tamannos,
+                         nombre_alg1='Quadtree', nombre_alg2='Fuerza Bruta',
+                         metrica='Tiempo (ms)'):
+    x = np.arange(5)
+    ancho = 0.35
+    etiquetas = [f'n={t}' for t in tamannos]
+ 
+    fig, ax = plt.subplots(figsize=(10, 6))
+ 
+    ax.bar(x - ancho/2, datos_alg1, ancho, label=nombre_alg1, color='steelblue')
+    ax.bar(x + ancho/2, datos_alg2, ancho, label=nombre_alg2, color='coral')
+ 
+    ax.set_xlabel('Prueba (tamaño de datos)')
+    ax.set_ylabel(metrica)
+    ax.set_title(f'Comparación: {nombre_alg1} vs {nombre_alg2}')
+    ax.set_xticks(x)
+    ax.set_xticklabels(etiquetas)
+    ax.legend()
+ 
+    plt.tight_layout()
+    plt.show()
+ 
+def graficar_comparacion_radio(datos_alg1, datos_alg2, tamannos,radios,
+                         nombre_alg1='Quadtree', nombre_alg2='Fuerza Bruta',
+                         metrica='Tiempo (ms)'):
+    x = np.arange(5)
+    ancho = 0.35
+    etiquetas = [f'n={t}\nr={r}' for t, r in zip(tamannos, radios)]
+ 
+    fig, ax = plt.subplots(figsize=(10, 6))
+ 
+    ax.bar(x - ancho/2, datos_alg1, ancho, label=nombre_alg1, color='steelblue')
+    ax.bar(x + ancho/2, datos_alg2, ancho, label=nombre_alg2, color='coral')
+ 
+    ax.set_xlabel('Prueba (tamaño de datos)')
+    ax.set_ylabel(metrica)
+    ax.set_title(f'Comparación: {nombre_alg1} vs {nombre_alg2}')
+    ax.set_xticks(x)
+    ax.set_xticklabels(etiquetas)
+    ax.legend()
+ 
+    plt.tight_layout()
+    plt.show()
+ 
+
 
 def comparacion_vecino():
     min = -5000
@@ -18,14 +65,14 @@ def comparacion_vecino():
     promedios_fuerza_b = [0 for _ in range(len(datos))]
 
     for i in range (len(tamannos)):
-        arbol = Arbol_KD(datos[i])
+        arbol = Quadtree(datos[i])
         objetivos = random.sample(datos[i], 3)
         
 
         for j in range(len(objetivos)):
 
             inicio = time.time()
-            arbol.buscar_vecino(objetivos[j])
+            arbol.buscar_cercano(objetivos[j])
             fin = time.time()
             promedios_arbol[i] += fin-inicio
 
@@ -54,13 +101,13 @@ def comparacion_radio():
     promedios_fuerza_b = [0 for _ in range(len(datos))]
 
     for i in range (len(radios)):
-        arbol = Arbol_KD(datos[i])
+        arbol = Quadtree(datos[i])
         centros = random.sample(datos[i], 3)
 
         for j in range(len(centros)):
 
             inicio = time.time()
-            arbol.encontrar_radio(centros[j],radios[i])
+            arbol.buscar_radio(radios[i],centros[j])
             fin = time.time()
             promedios_arbol[i] += fin-inicio
 
@@ -74,13 +121,10 @@ def comparacion_radio():
     
     return promedios_arbol, promedios_fuerza_b
 
-
-print("Se inicia la prueba para vecinos cercanos, en la cual se realizan 5 pruebas con 3 objetivos distintos y con distintos datos entre pruebas, cada conjunto")
-print("con un tamaño distinto.")
 tamannos = [100,500,1000,5000,10000]
+tiempos_arbol, tiempos_fuerza_bruta = comparacion_vecino()
+graficar_comparacion_vecino(tiempos_arbol, tiempos_fuerza_bruta, tamannos=tamannos)
 
-
-print("Se inicia la prueba para busqueda por radio, en la cual se realizan 5 pruebas con 3 centros distintos y con distintos datos entre pruebas, cada conjunto")
-print("con un radio distinto.")
 radios = [500,1000,2000,5000,7000]
-
+tiempos_arbol, tiempos_fuerza_bruta = comparacion_radio()
+graficar_comparacion_radio(tiempos_arbol, tiempos_fuerza_bruta,tamannos, radios)
